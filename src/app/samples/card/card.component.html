@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th resizable>Title</th>
+            <th resizable>Body</th>
+            <th resizable>Media</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let card of cards">
+            <td>{{card.title}}</td>
+            <td>{{card.text}}</td>
+            <td><img *ngIf="card.media?.src" [src]="card.media?.src" alt="card.title" class="w-100"></td>
+            <td><a [href]="card.redirectUrl">Source</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<btsp-card [cards]="cards"></btsp-card>

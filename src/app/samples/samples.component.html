@@ -1,0 +1,8 @@
+Sample
+<ng-container *ngIf="isChildActivated;else parentTemplate">
+    <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #parentTemplate>
+    <btsp-card [cards]="dataSource"></btsp-card>
+</ng-template>

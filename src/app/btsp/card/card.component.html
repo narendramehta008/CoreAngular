@@ -1,0 +1,16 @@
+<div class="row gy-2">
+    <div class="col" *ngFor="let card of cards">
+        <ng-container *ngTemplateOutlet="cardTemplate; context: {card:card}"></ng-container>
+    </div>
+
+</div>
+<ng-template #cardTemplate let-card="card">
+    <div class="card" style="width: 18rem;">
+        <img *ngIf="card.media?.src" [src]="card.media?.src" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{card.title}}</h5>
+            <p class="card-text overflow-auto scroll">{{card.text}}</p>
+            <a [href]="card.redirectUrl" class="card-link">Source</a>
+        </div>
+    </div>
+</ng-template>
