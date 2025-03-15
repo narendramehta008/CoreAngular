@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ResizableModule } from './resizable/resizable.module';
 import { SamplesModule } from './samples/samples.module';
@@ -18,5 +18,10 @@ import { BtspModule } from './btsp/btsp.module';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor() {}
+  constructor(@Inject(DOCUMENT) private document: Document) {}
+  ngAfterContentChecked(): void {
+    console.log(' ngAfterContentChecked');
+    this.document.getElementById('nodePath')?.click();
+  }
+
 }
