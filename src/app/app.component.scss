@@ -1,0 +1,28 @@
+.close-modal {
+    position: relative;
+    position: relative;
+    /* ensure the close button positions relative to modal */
+    padding: 20px;
+    background-color: rgba(239, 239, 240, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    .close {
+        position: absolute;
+        /* position relative to modal */
+        top: 10px;
+        /* distance from top */
+        right: 10px;
+        /* distance from right */
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: #d33a3a;
+        }
+    }
+
+}

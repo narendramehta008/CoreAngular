@@ -1,0 +1,10 @@
+<div class="close-modal px-2">
+    <span class="close close-modal-btn">&times;</span>
+    <ngx-monaco-editor  [options]="javasciptEditOpt" [model]="modelOptions(code)"></ngx-monaco-editor>
+</div>
+
+<button class="primary" (click)="btn()">Primary</button>
+ <!-- <ngx-monaco-editor [options]="htmlEditOpt" [model]="modelOptions(code2)"></ngx-monaco-editor> -->
+  <div id="monaco" style="height: 50rem;border: 2px solid #743bdd;"></div>
+
+<router-outlet />
