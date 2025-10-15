@@ -12,62 +12,29 @@ import { editor } from 'monaco-editor';
 })
 export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {
-    this.populateEditor('monaco', '', 'html');
-  }
-  title = 'ang-app';
-
-  javasciptEditOpt = this.editorOpt();
-  htmlEditOpt = this.editorOpt('html');
-  code: string = /* set from `myEditor.getModel()`: */ `function hello() {
-	alert('Hello world!');
-}`;
-
-  code2: string = "// First line\nfunction hello() {\n\talert('Hello world!');\n}\n// Last line";
-
-
-  model: NgxEditorModel = {
-    value: this.code,
-    language: 'javascript'
+    this.monacorLoader();
   }
 
-  editorOpt(language: string = 'javascript') {
-    return {
-      language: language,
-    };
+  editorOptions: editor.IStandaloneEditorConstructionOptions = {
+    minimap: { enabled: false },
+  };
+  code: NgxEditorModel = {
+    value: 'function x() {\n  console.log("Hello world!");\n}',
+    language: 'javascript',
   }
-  modelOptions(code: string, language: string = 'javascript'): NgxEditorModel {
-    return {
-      value: code,
-      language: language
+  code2: NgxEditorModel = {
+    value: '',
+    language: 'html',
+  }
+
+  monacorLoader() {
+    if (typeof window !== "undefined") {
+      (<any>window).MonacoEnvironment = {
+        getWorkerUrl: function (moduleId: string, label: string) {
+          return `/assets/monaco/min/vs/base/worker/workerMain.js`;
+        }
+      };
     }
   }
 
-  editor1 = this.modelOptions(this.code);
-  editor2 = this.modelOptions(this.code2);
-
-  btn() {
-    this.editor1 = this.modelOptions(this.code2);
-    this.editor2 = this.modelOptions(this.code);
-  }
-
-  populateEditor(
-    key: string,
-    data: string,
-    language: string | null,
-    readOnly: boolean = false
-  ) {
-    const editorElement = document.getElementById(key);
-    if (editorElement) {
-      return editor.create(editorElement, {
-        value: data,
-        language: language || 'javascript',
-        minimap: {
-          enabled: false,
-        },
-        readOnly: readOnly,
-        automaticLayout: true,
-      });
-    }
-    return null;
-  }
 }
